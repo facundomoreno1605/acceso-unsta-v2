@@ -1,0 +1,36 @@
+{
+    "Persons": {
+        "name": "",
+        "last_name": "",
+        "code": "",
+        "career": "",
+        "type": "[ALUMNO, PROFESOR]"
+    },
+
+    "Plate": {
+        "person_id": "",
+        "domain": ""
+    },
+
+    "Qr": {
+        "person_id": "",
+        "code": "",
+        "status": "[ACTIVO, ACEPTADO, EXPIRADO]",
+        "request_date": ""
+    },
+
+    "Accesses": {
+        "Person": {
+            "_id": "",
+            "name": "",
+            "last_name": "",
+            "code": ""
+        },
+        "date": "",
+        "movement": "[ENTRADA, SALIDA]",
+        "type": "[PEATON, VEHICULO]",
+        "plate": {
+            "domain": ""
+        }
+    }
+}

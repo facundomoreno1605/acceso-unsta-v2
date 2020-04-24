@@ -1,0 +1,45 @@
+{
+    "PORT": 3000,
+    "ENVIRONMENT": "DEVELOPMENT",
+    "db": {
+        "PRODUCTION": "",
+        "DEVELOPMENT": "mongodb://localhost/acceso-unsta",
+        "OPTIONS": {
+            "useNewUrlParser": true,
+            "useCreateIndex": true,
+            "useUnifiedTopology": true,
+            "useFindAndModify": false
+        },
+        "LOG_OPTIONS": {
+            "useNewUrlParser": true,
+            "useUnifiedTopology": true
+        }
+    },
+    "person": {
+        "type": {
+            "ALUMNO": "ALUMNO",
+            "PROFESOR": "PROFESOR"
+        }
+    },
+
+    "qr": {
+        "status": {
+            "ACTIVO": "ACTIVO",
+            "ACEPTADO": "ACEPTADO",
+            "EXPIRADO": "EXPIRADO"
+        },
+        "EXPIRATION_TIME": 300000
+    },
+
+    "movement": {
+        "ENTRADA": "ENTRADA",
+        "SALIDA": "SALIDA"
+    },
+
+    "access": {
+        "type": {
+            "PEATON": "PEATON",
+            "VEHICULO": "VEHICULO"
+        }
+    }
+}
