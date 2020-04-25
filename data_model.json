@@ -29,8 +29,6 @@
         "date": "",
         "movement": "[ENTRADA, SALIDA]",
         "type": "[PEATON, VEHICULO]",
-        "plate": {
-            "domain": ""
-        }
+         "domain": ""
     }
 }
