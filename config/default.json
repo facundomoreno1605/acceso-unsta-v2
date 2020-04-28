@@ -3,7 +3,7 @@
     "ENVIRONMENT": "DEVELOPMENT",
     "db": {
         "PRODUCTION": "",
-        "DEVELOPMENT": "mongodb://localhost/acceso-unsta",
+        "DEVELOPMENT": "mongodb+srv://facundo:moreno@cluster0-tg11g.mongodb.net/test?retryWrites=true&w=majority",
         "OPTIONS": {
             "useNewUrlParser": true,
             "useCreateIndex": true,
