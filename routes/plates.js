@@ -29,10 +29,19 @@ router.post('/alumnos', async(req, res) => {
     }
 
     var plate = await Plate.findOne({ domain: req.body.domain })
-    if(plate) return res.status(400).send(`Ya existe una patente cargada con el dominio: ${req.body.domain}`)
+    if(plate) {
+        return res.status(400).send({
+            error: `Ya existe una patente cargada con el dominio: ${req.body.domain}`
+        })
+    }
 
     var plates = await Plate.find({ person_id: person.id })
-    if(plates.length  >= 5)  return res.status(400).send('Numero maximo de patentes alcanzado.')
+    if(plates.length  >= 5) {
+        return res.status(400).send({
+            error: 'Numero maximo de patentes alcanzado.'
+        })
+    }
+
 
 
     plate =  await Plate.create({
@@ -64,10 +73,18 @@ router.post('/profesores', async(req, res) => {
     }
 
     var plate = await Plate.findOne({ domain: req.body.domain })
-    if(plate) return res.status(400).send(`Ya existe una patente cargada con el dominio: ${req.body.domain}`)
+    if(plate) {
+        return res.status(400).send({
+            error: `Ya existe una patente cargada con el dominio: ${req.body.domain}`
+        })
+    }
 
     var plates = await Plate.find({ person_id: person.id })
-    if(plates.length  >= 5)  return res.status(400).send('Numero maximo de patentes alcanzado.')
+    if(plates.length  >= 5) {
+        return res.status(400).send({
+            error: 'Numero maximo de patentes alcanzado.'
+        })
+    }
 
 
     plate =  await Plate.create({
@@ -88,19 +105,27 @@ router.delete('/delete', async(req, res) => {
 
     let person = await Person.findOne({ code: req.body.code })
     if(!person) {
-        return res.status(400).send('Persona no encontrada.')
+        return res.status(400).send({
+            error: 'Persona no encontrada.'
+        })
     }
 
     let plate = await Plate.findOne({ domain: req.body.domain })
-    if(!plate) return res.status(400).send('Patente no encontrada.')
+    if(!plate){
+        return res.status(400).send({
+            error: 'Patente no encontrada.'
+        })
+    } 
 
     if(String(plate.person_id) != String(person._id)) {
-        return res.status(400).send(`La patente no pertenece a la persona`)
+        return res.status(400).send({ error: `La patente no pertenece a la persona` })
     }
 
     await plate.delete()
 
-    res.send('Patente elminada correctamente.')
+    res.send({
+        message: 'Patente elminada correctamente.'
+    })
 
 })
 
@@ -115,7 +140,7 @@ router.post('/access', async(req, res) => {
 
     let plate = await Plate.findOne({ domain: req.body.domain })
     if(!plate) {
-        return res.status(400).send('Acceso denegado.')
+        return res.status(400).send({error: 'Acceso denegado.'})
     }
 
     let person = await Person.findOne({ _id: plate.person_id })
@@ -127,7 +152,7 @@ router.post('/access', async(req, res) => {
         domain: plate.domain
     })
 
-    res.send('Acceso concedido.')
+    res.send({ message: 'Acceso concedido.'})
 })
 
 module.exports = router

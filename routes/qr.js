@@ -31,7 +31,10 @@ router.post('/alumnos', async(req, res) => {
         qr.setExpirationTime()
     }
 
-    res.send(qr.code)
+
+    res.send({
+        code: qr.code
+    })
 })
 
 router.post('/profesores', async(req, res) => {
@@ -58,7 +61,9 @@ router.post('/profesores', async(req, res) => {
         qr.setExpirationTime()
     }
 
-    res.send(qr.code)
+    res.send({
+        code: qr.code
+    })
 })
 
 router.post('/validate', async(req, res) => {
@@ -67,7 +72,7 @@ router.post('/validate', async(req, res) => {
 
     let qr = await Qr.isValid(req.body.code)
     if(!qr) {
-        return res.status(400).send('Codigo invalido.')
+        return res.status(400).send({ error: 'Codigo invalido.'})
     }
 
     let person = await Person.findOne({ _id: qr.person_id })
@@ -81,7 +86,9 @@ router.post('/validate', async(req, res) => {
         type: config.get('access.type.PEATON')
     })
 
-    res.send('Acceso concedido.')
+    res.send({
+        message: 'Acceso concedido.'
+    })
 })
 
 module.exports = router
