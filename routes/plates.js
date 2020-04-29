@@ -36,7 +36,7 @@ router.post('/alumnos', async(req, res) => {
     }
 
     var plates = await Plate.find({ person_id: person.id })
-    if(plates.length  >= 5) {
+    if(plates.length  >= 20) {
         return res.status(400).send({
             error: 'Numero maximo de patentes alcanzado.'
         })
@@ -81,7 +81,7 @@ router.post('/profesores', async(req, res) => {
     }
 
     var plates = await Plate.find({ person_id: person.id })
-    if(plates.length  >= 5) {
+    if(plates.length  >= 20) {
         return res.status(400).send({
             error: 'Numero maximo de patentes alcanzado.'
         })
