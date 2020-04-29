@@ -33,7 +33,7 @@ router.post('/alumnos', async(req, res) => {
 
 
     res.send({
-        code: qr.code
+        data: qr._id
     })
 })
 
@@ -62,7 +62,7 @@ router.post('/profesores', async(req, res) => {
     }
 
     res.send({
-        code: qr.code
+        data: qr._id
     })
 })
 
