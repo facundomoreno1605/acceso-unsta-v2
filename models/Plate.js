@@ -7,6 +7,11 @@ const schema = new mongoose.Schema({
         index: true,
         required: true
     },
+    person_code: {
+        type: String,
+        index: true,
+        required: true
+    },
     domain: {
         type: String,
         max: 9,

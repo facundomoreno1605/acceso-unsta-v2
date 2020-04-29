@@ -46,6 +46,7 @@ router.post('/alumnos', async(req, res) => {
 
     plate =  await Plate.create({
                     person_id: person,
+                    person_code: req.body.code,
                     domain: req.body.domain
                 })
 
@@ -89,6 +90,7 @@ router.post('/profesores', async(req, res) => {
 
     plate =  await Plate.create({
                     person_id: person,
+                    person_code: req.body.code,
                     domain: req.body.domain
                 })
 
@@ -153,6 +155,16 @@ router.post('/access', async(req, res) => {
     })
 
     res.send({ message: 'Acceso concedido.'})
+})
+
+
+router.get('/:code', async (req, res) => {
+    let plates = await Plate.find({ person_code: req.params.code })
+    if(plates.length == 0) {
+        return res.status(400).send({ message: 'No tiene patentes cargadas' })
+    }
+
+    res.send(plates)
 })
 
 module.exports = router
