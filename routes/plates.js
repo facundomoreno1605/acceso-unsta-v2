@@ -97,31 +97,13 @@ router.post('/profesores', async(req, res) => {
     res.send(plate)    
 })
 
-router.delete('/delete', async(req, res) => {
-    let {error} = Joi.object({
-        code: Joi.string().max(255).required(),
-        domain: Joi.string().max(9).required()
-    }).validate(req.body, {abortEarly: false})
-
-    if(error) return res.status(400).send(error)
-
-    let person = await Person.findOne({ code: req.body.code })
-    if(!person) {
-        return res.status(400).send({
-            error: 'Persona no encontrada.'
-        })
-    }
-
-    let plate = await Plate.findOne({ domain: req.body.domain })
+router.delete('/delete/:domain', async(req, res) => {
+    let plate = await Plate.findOne({ domain: req.params.domain })
     if(!plate){
         return res.status(400).send({
             error: 'Patente no encontrada.'
         })
     } 
-
-    if(String(plate.person_id) != String(person._id)) {
-        return res.status(400).send({ error: `La patente no pertenece a la persona` })
-    }
 
     await plate.delete()
 
