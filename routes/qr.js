@@ -72,7 +72,10 @@ router.post('/validate', async(req, res) => {
 
     let qr = await Qr.isValid(req.body.code)
     if(!qr) {
-        return res.status(400).send({ error: 'Codigo invalido.'})
+        return res.status(400).send({ 
+            error: 'Codigo invalido.',
+            codigo: 0,
+        })
     }
 
     let person = await Person.findOne({ _id: qr.person_id })
@@ -87,7 +90,8 @@ router.post('/validate', async(req, res) => {
     })
 
     res.send({
-        message: 'Acceso concedido.'
+        message: 'Acceso concedido.',
+        codigo: 1,
     })
 })
 
