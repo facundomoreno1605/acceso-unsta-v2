@@ -124,7 +124,10 @@ router.post('/access', async(req, res) => {
 
     let plate = await Plate.findOne({ domain: req.body.domain })
     if(!plate) {
-        return res.status(400).send({error: 'Acceso denegado.'})
+        return res.status(400).send({
+            error: 'Acceso denegado.',
+            codigo: 0,
+        })
     }
 
     let person = await Person.findOne({ _id: plate.person_id })
@@ -136,7 +139,10 @@ router.post('/access', async(req, res) => {
         domain: plate.domain
     })
 
-    res.send({ message: 'Acceso concedido.'})
+    res.send({ 
+        message: 'Acceso concedido.',
+        codigo: 1,
+    }) 
 })
 
 
